@@ -1,0 +1,118 @@
+@model TheatreCMS3.Areas.Prod.Models.CastMember
+
+@{
+  ViewBag.Title = "Delete";
+}
+
+<!--CastMember Name-->
+<h3 class="text-nowrap m-3 prod-header text-md-center">Delete this Cast Member?</h3>
+<div class="container-fluid prod-form align-content-center">
+  <div class="prod-form-div">
+    <div class="text-center ">
+      <h6 class="prod-header-lg">@Model.Name</h6>
+    </div>
+  </div>
+
+
+  <!--CastMember Photo-->
+  <div class="prod-img-display ">
+    <img id="display" src="/CastMembers/GetImage/@Model.CastMemberId" alt="@Model.Name's Cast Member Photo" class="prod-img-lg"/>
+  </div>
+
+  <!--Bio-->
+  <div class="prod-form-div">
+    @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+    <div class="col prod-bio-display">
+      @Html.DisplayFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control " } })
+    </div>
+    <hr class="cms-bg-main-light mt-2 pb-2"/>
+  </div>
+
+  <!-- Other Details-->
+  <div class="prod-form-div">
+    <div class="row mb-4">
+      <div class="col-md-4">
+        @Html.LabelFor(model => model.DebutYear, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col">
+          @Html.DisplayFor(model => model.DebutYear, new { htmlAttributes = new { @class = "" } })
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        @Html.LabelFor(model => model.Productions, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col">
+          @Html.Display("ProductionTitles")  <!--ViewBag Call-->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        @Html.LabelFor(model => model.MainRole, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col">
+          @Html.DisplayFor(model => model.MainRole, new { htmlAttributes = new { @class = "form-control prod-input" } })
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-4">
+        @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col">
+          @Html.DisplayFor(model => model.Character, new { htmlAttributes = new { @class = " " } })
+        </div>
+      </div>
+
+      <div class=" col-md-4">
+        @Html.LabelFor(model => model.YearJoined, htmlAttributes: new { @class = "prod-form-label  col-md-2" })
+        <div class="">
+          @Html.DisplayFor(model => model.YearJoined, new { htmlAttributes = new { @class = "form-control " } })
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        @Html.LabelFor(model => model.CastYearLeft, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col">
+          @Html.DisplayFor(model => model.CastYearLeft, new { htmlAttributes = new { @class = "" } })
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        @Html.LabelFor(model => model.CurrentMember, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+        <div class="col-md-4">
+          <div class="checkbox">
+            @Html.DisplayFor(model => model.CurrentMember)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Buttons-->
+<div class="prod-btn-container">                     
+  <div class="ml-4 mt-3 row">
+    <!--Index-->
+    <div class="col-md-2 m-1 mr-4">
+      <a href=@Url.Action("Index", "CastMembers") title="Back to List">
+        <i class=" text-nowrap fas fa-list fa-1x prod-btn mr-2 btn ">&nbsp;Back to List</i>
+      </a>
+    </div>
+    <!--Edit-->
+    <div class="col-md-2 m-1">
+      <a href=@Url.Action("Edit", "CastMembers", new { id = Model.CastMemberId} ) title="Edit">
+        <i class=" text-nowrap far fa-edit fa-1x prod-btn mr-2 mb-1 btn ">&nbsp;Edit</i>
+      </a>
+    </div>
+    <!--Delete-->
+    <div class="col-md-1  offset-md-5">
+      @using (Html.BeginForm())
+       {
+        @Html.AntiForgeryToken()
+          <button type="submit" class=" prod-btn-danger btn font-weight-bold ">
+            <i class="fa fa-trash fa-1x  mr-2">&nbsp;Delete</i>
+          </button>
+       }
+    </div>
+  </div>
+</div>

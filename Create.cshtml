@@ -1,0 +1,122 @@
+@model TheatreCMS3.Areas.Prod.Models.CastMember
+
+@{
+  ViewBag.Title = "Create";
+}
+
+<h3 class="text-nowrap m-3 prod-header text-sm-center">Create Cast Member</h3>
+<div class="container-fluid">
+  @using (Html.BeginForm("Create", "CastMembers", FormMethod.Post, new { enctype = "multipart/form-data", @class = "prod-form" }))
+  {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!--CastMember Name-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control prod-input w-100", @placeholder = "Enter Name" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember Year Joined-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.YearJoined, htmlAttributes: new { @class = "prod-form-label  col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.YearJoined, new { htmlAttributes = new { @class = "form-control prod-input", @placeholder = "Enter Year Joined" } })
+        @Html.ValidationMessageFor(model => model.YearJoined, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember Productions-->
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+      <div class="prod-form-div pl-3">
+        @Html.LabelFor(model => model.Productions, htmlAttributes: new { @class = "prod-form-label" })<br />
+        @Html.ListBoxFor(model => model.SelectedProductions, Model.ProductionsListItems)
+      </div>
+    
+    <!--CastMember MainRole-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.MainRole, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EnumDropDownListFor(model => model.MainRole, htmlAttributes: new { @class = "form-control prod-input", @placeholder = "Enter Role" })
+        @Html.ValidationMessageFor(model => model.MainRole, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember Bio-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control prod-input", @placeholder = "Enter Bio" } })
+        @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember Current-Member-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.CurrentMember, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        <div class="checkbox">
+          @Html.EditorFor(model => model.CurrentMember)
+          @Html.ValidationMessageFor(model => model.CurrentMember, "", new { @class = "text-danger" })
+        </div>
+      </div>
+    </div>
+
+    <!--CastMember Character-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.Character, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.Character, new { htmlAttributes = new { @class = "form-control prod-input", @placeholder = "Enter Character Name" } })
+        @Html.ValidationMessageFor(model => model.Character, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember CastYearLeft-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.CastYearLeft, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.CastYearLeft, new { htmlAttributes = new { @class = "form-control prod-input", @placeholder = "Enter Year Left" } })
+        @Html.ValidationMessageFor(model => model.CastYearLeft, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--CastMember DebutYear-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.DebutYear, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col">
+        @Html.EditorFor(model => model.DebutYear, new { htmlAttributes = new { @class = " form-control prod-input", @placeholder = "Enter Debut Year" } })
+        @Html.ValidationMessageFor(model => model.DebutYear, "", new { @class = "text-danger" })
+      </div>
+    </div>
+
+    <!--Photo Display-->
+    <div class="prod-form-div">
+      @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "prod-form-label col-md-2" })
+      <div class="col-md-offset-2 col-md-10 mb-4">
+        <input type="file" name="File" id="file" required onchange="readURL(this);" />
+      </div>
+      <div class=" col-md-10 text-center ">
+        <img id="preview" src="#" alt="Image Preview" class="img-thumbnail bg-dark" />
+      </div>
+    </div>
+
+    <!--Buttons-->
+    <div class="prod-form-div">
+      <div class="col-md-offset-2 text-center">
+        <input type="submit" value="Create" class="btn prod-btn m-auto btn-block" />
+      </div>
+    </div>
+    <div class="prod-form-div">
+      <div class="col-md-offset-2  text-center">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn prod-btn-danger btn-block " })
+      </div>
+    </div>
+  }
+</div>
+@section Scripts {
+  @Scripts.Render("~/bundles/jqueryval")
+}
