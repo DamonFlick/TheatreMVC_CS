@@ -1,4 +1,4 @@
-# C# Live Project
+# C# Theatre MVC RDBMS
 
 ## Introduction
 This work was completed over two week internship with Prosper IT Conculting beginning on 4/19/21. I worked with a team of peers in developing a full-scale MVC Web Application. We worked within the Scrum Framework, utilizing Azure DevOps for flexible version control and task-management while developing new features for our build. 
